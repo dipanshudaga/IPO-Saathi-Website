@@ -27,40 +27,57 @@
 
   <main id="main" class="doc">
     <header>
-      <p class="eyebrow">Help</p>
       <h1>Support</h1>
-      <p class="meta">We read every message.</p>
+      <p class="meta">We reply within a few days.</p>
     </header>
-
     <div class="prose">
-      <h2>Send us a message</h2>
       <form id="contact" class="form" method="post" data-clarity-mask="True">
         <div class="two">
           <div class="field"><label for="c-name">Name</label><input id="c-name" name="name" type="text" autocomplete="name" required maxlength="80"></div>
           <div class="field"><label for="c-email">Email</label><input id="c-email" name="email" type="email" autocomplete="email" required maxlength="120"></div>
         </div>
-        <div class="field"><label for="c-msg">Message</label><textarea id="c-msg" name="message" required minlength="3" maxlength="4000" placeholder="Wrong data, a logo to remove, a question, or feedback"></textarea></div>
+        <div class="field"><label for="c-msg">Message</label><textarea id="c-msg" name="message" required minlength="3" maxlength="4000" placeholder="How can we help?"></textarea></div>
+        <div class="field" id="code-row" hidden><label for="c-code">Code from your email</label><input id="c-code" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9 ]{6,7}" maxlength="7" placeholder="6 digits"></div>
         <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <div class="send"><button class="btn" type="submit">Send message</button><p class="status" role="status" aria-live="polite"></p></div>
-        <p class="note">We use your name and email only to reply. Prefer email? Write to <a class="mail" href="mailto:dipanshudaga24@gmail.com?subject=IPO%20Saathi%20support">dipanshudaga24@gmail.com</a>.</p>
-        <noscript><p class="note">This form needs JavaScript. Please email us at dipanshudaga24@gmail.com instead.</p></noscript>
+        <div class="send"><button class="btn" type="submit">Send message</button><button class="linkbtn" type="button" id="restart" hidden>Change email</button><p class="status" role="status" aria-live="polite"></p></div>
+        <noscript><p class="note">This form needs JavaScript. Please email us instead.</p></noscript>
       </form>
+      <p class="alt">Or write to <a class="mail" href="mailto:dipanshudaga24@gmail.com?subject=IPO%20Saathi%20support">dipanshudaga24@gmail.com</a></p>
     </div>
     <script>
       (function () {
         var f = document.getElementById('contact');
         if (!f || !window.fetch) return;
         var URL = 'https://stfwqyacvwwijzayahyr.supabase.co/functions/v1/contact', KEY = 'sb_publishable_oOkEXeEurtiB2mKhyqtGzQ_lpkY6cDL';
+        var btn = f.querySelector('.btn'), st = f.querySelector('.status'), codeRow = document.getElementById('code-row'), code = document.getElementById('c-code'), restart = document.getElementById('restart');
+        var pending = null;
+        function say(text, kind) { st.className = 'status' + (kind ? ' ' + kind : ''); st.textContent = text; }
+        function track(n, p) { if (window.track) window.track(n, p); }
+        function lock(on) { ['c-name', 'c-email', 'c-msg'].forEach(function (id) { document.getElementById(id).readOnly = on; }); }
+        function reset() { pending = null; lock(false); codeRow.hidden = true; restart.hidden = true; code.required = false; code.value = ''; btn.textContent = 'Send message'; }
+        function post(body) {
+          return fetch(URL, { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: KEY, Authorization: 'Bearer ' + KEY }, body: JSON.stringify(body) })
+            .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) throw j; return j; }); });
+        }
+        var WORDS = { 'bad email': 'That email address does not look right.', wait: 'Please wait a few minutes before asking for another code.', busy: 'We are busy right now. Please try again later.', 'wrong code': 'That code is not right.', expired: 'That code has expired. Press Send message again.' };
+        restart.addEventListener('click', function () { reset(); say(''); document.getElementById('c-email').focus(); });
         f.addEventListener('submit', function (e) {
           e.preventDefault();
-          var b = f.querySelector('button'), s = f.querySelector('.status');
-          b.disabled = true; s.className = 'status'; s.textContent = 'Sending...';
+          btn.disabled = true; say('One moment...');
           var d = {}; new FormData(f).forEach(function (v, k) { d[k] = v; });
-          fetch(URL, { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: KEY, Authorization: 'Bearer ' + KEY }, body: JSON.stringify(d) })
-            .then(function (r) { if (!r.ok) throw new Error('not sent'); return r.json(); })
-            .then(function () { if (window.track) window.track('web_contact_sent', { result: 'success' }); f.reset(); s.className = 'status ok'; s.textContent = 'Thank you. Your message is on its way, and we will reply by email.'; })
-            .catch(function () { if (window.track) window.track('web_contact_sent', { result: 'error' }); s.className = 'status err'; s.textContent = 'Could not send. Please email us at dipanshudaga24@gmail.com instead.'; })
-            .then(function () { b.disabled = false; });
+          var step = pending ? post({ action: 'confirm', id: pending, code: d.code }) : post({ name: d.name, email: d.email, message: d.message, website: d.website });
+          step.then(function (j) {
+            if (j.step === 'code') {
+              pending = j.id; lock(true); codeRow.hidden = false; restart.hidden = false; code.required = true; code.focus();
+              btn.textContent = 'Confirm and send'; say('Code sent to ' + d.email, ''); track('web_contact_code_requested');
+            } else {
+              reset(); f.reset(); say('Thanks. We will reply by email.', 'ok'); track('web_contact_sent', { result: 'success' });
+            }
+          }).catch(function (j) {
+            var m = (j && WORDS[j.error]) || 'Could not send. Please email us instead.';
+            if (j && j.error === 'expired') reset();
+            say(m, 'err'); track('web_contact_sent', { result: 'error' });
+          }).then(function () { btn.disabled = false; });
         });
       })();
     </script>
