@@ -1,3 +1,9 @@
+// Offline page: when there is no connection, sw.js shows a small puzzle instead of the browser's error (see offline.html).
+(function () {
+  if (!('serviceWorker' in navigator) || !document.currentScript) return;
+  navigator.serviceWorker.register(document.currentScript.src.replace(/assets\/track\.js.*$/, '') + 'sw.js').catch(function () {});
+})();
+
 // Counts visits and button clicks on the IPO Saathi website, in the same Mixpanel project as the app.
 // No cookies and nothing kept on the device: the visitor code lives in sessionStorage, which the browser
 // clears when the tab closes. The address is not stored (ip=0). Nothing is sent at all when the browser

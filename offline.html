@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Page not found · IPO Saathi</title>
+<title>You're offline · IPO Saathi</title>
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#F8FAF9">
 <style>
@@ -66,16 +66,15 @@
   </section>
   <div class="region" id="region">
     <div class="sign">
-      <h1>That page isn't here.</h1>
-      <p>The link may be old or mistyped.</p>
-      <a class="cta" id="home" href="/">Go home</a>
+      <h1>You're offline.</h1>
+      <p>Check your connection, then try again. Until then, a small puzzle.</p>
+      <a class="cta" id="retry" href="#" onclick="location.reload();return false">Try again</a>
     </div>
   </div>
 </main>
 <script>
-// The home page: the site root on iposaathi.com, the project folder while it is served from github.io.
-if (/github\.io$/.test(location.hostname)) document.getElementById('home').href = '/IPO-Saathi-Website/';
-
+// This page is served by sw.js when a visitor has no connection. Keep it in sync with 404.html: it must stay
+// self-contained, because it is shown at whatever address the visitor asked for.
 // A small 2048-style puzzle to fill the page: tiles are subscription multiples, equal tiles merge when you
 // swipe (or press an arrow key), and the aim is to reach 128x. The best score is kept on this device.
 (function () {

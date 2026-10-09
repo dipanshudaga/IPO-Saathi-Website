@@ -14,8 +14,8 @@
 <meta property="og:image" content="https://iposaathi.com/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#F8FAF9">
-<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/inter-400Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-600SemiBold.woff2" as="font" type="font/woff2" crossorigin>
@@ -27,10 +27,12 @@
   <header class="top"><a class="brand" data-track="logo" href="./"><img src="assets/logo.svg" alt="" width="26" height="39">IPO Saathi</a><nav class="nav" aria-label="Main"><a data-track="faq_header" href="#faq">FAQ</a><a data-track="support_header" href="support/">Support</a><a class="cta" data-track="download_header" href="#download">Download the app</a></nav></header>
 
   <main id="main" class="grid">
-    <section id="download" class="t t-hero reveal" style="--i:0">
-      <div>
-        <h1>Every IPO, and your whole family's allotment, in one place.</h1>
+    <section id="download" class="t t-hero reveal" style="--i:0" data-charm>
+      <div class="charm" aria-hidden="true"><i class="thread"></i><div class="art"><img src="assets/charm.svg" alt="" width="160" height="134"></div></div>
+      <div class="copy">
+        <h1>Every IPO, in one place.</h1>
         <p>GMP, subscription and allotment for all your PANs.</p>
+        <p class="usp">Check allotment for your whole family in one go.</p>
       </div>
       <img data-track="download_badge" src="assets/google-play-badge.svg" alt="Get it on Google Play (coming soon)" width="239" height="71">
     </section>
@@ -117,11 +119,11 @@
       <li><a data-track="footer_terms" href="terms/">Terms</a></li>
       <li><a data-track="footer_disclaimer" href="disclaimer/">Disclaimer</a></li>
       <li><a data-track="footer_data_sources" href="data-sources/">Data sources</a></li>
-      <li><a data-track="footer_support" href="support/">Support</a></li>
     </ul>
     <p>For information only, not investment advice. Not affiliated with SEBI, NSE, BSE, any registrar or any company shown.</p>
   </footer>
 </div>
 <script src="assets/track.js" defer></script>
+<script src="assets/charm.js" defer></script>
 </body>
 </html>
