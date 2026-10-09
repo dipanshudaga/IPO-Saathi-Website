@@ -2,6 +2,7 @@
 // No cookies and nothing kept on the device: the visitor code lives in sessionStorage, which the browser
 // clears when the tab closes. The address is not stored (ip=0). Nothing is sent at all when the browser
 // says Do Not Track or Global Privacy Control. The token is public by design, like the app's.
+// Heatmaps and recordings come from Microsoft Clarity (the website project), loaded below in its cookie-free mode.
 (function () {
   var TOKEN = 'f0b1a02eae33b9616369b56a33a8362f';
   // Browsers use Mixpanel's own web endpoint with a form-encoded body (a plain request, so no CORS preflight).
@@ -32,6 +33,18 @@
     } catch (e) {}
   }
   window.track = send;
+
+  // Microsoft Clarity: heatmaps and recordings. Only on the live site, not on localhost. Consent is declared
+  // denied, so Clarity sets no cookies and treats each page view on its own (its "no-consent mode"); form
+  // fields are never recorded. Same Do Not Track / Global Privacy Control rule as above (we returned early).
+  if (env === 'production') {
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+      t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, 'clarity', 'script', 'yuzbln0r27');
+    window.clarity('consentv2', { ad_Storage: 'denied', analytics_Storage: 'denied' });
+  }
 
   send('web_page_viewed', { referrer_host: ref, utm_source: q.get('utm_source') || '', utm_medium: q.get('utm_medium') || '', utm_campaign: q.get('utm_campaign') || '' });
 

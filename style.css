@@ -48,6 +48,13 @@ a:hover { text-decoration-thickness: 2px; }
 
 .wrap { width: 100%; max-width: 1040px; margin: 0 auto; padding: 0 var(--gutter); }
 
+/* Primary button: the same as the app's PrimaryButton (brand 600 to 700, 12px corners, soft lift, light top edge) */
+.cta, .btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 20px; border: 0; border-radius: 12px; font: inherit; font-size: 15px; font-weight: 600; line-height: 1.4; color: #fff; text-decoration: none; cursor: pointer; background: linear-gradient(180deg, #2E8B61, #23734F); box-shadow: 0 3px 6px rgba(18, 59, 45, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.3); transition: transform 0.15s; }
+.cta::before, .btn::before { content: ''; position: absolute; inset: 0 0 50% 0; background: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0)); pointer-events: none; }
+.cta:hover, .btn:hover { background: linear-gradient(180deg, #23734F, #18523C); color: #fff; }
+.cta:active, .btn:active { transform: translateY(1px); }
+.btn[disabled] { opacity: 0.6; cursor: default; }
+
 /* Header */
 .top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 0; }
 .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-weight: 600; font-size: 18px; letter-spacing: -0.01em; }
@@ -56,9 +63,7 @@ a:hover { text-decoration-thickness: 2px; }
 .nav a { color: var(--ink-3); text-decoration: none; }
 .nav a:hover { color: var(--brand); }
 .nav a[aria-current='page'] { color: var(--ink); }
-.nav .cta { color: #fff; font-weight: 600; padding: 10px 20px; border-radius: 999px; background: var(--brand-deep); transition: background 0.2s, transform 0.2s; }
-.nav .cta:hover { color: #fff; background: var(--brand); }
-.nav .cta:active { transform: scale(0.98); }
+.nav a.cta, .nav a.cta:hover { color: #fff; }
 @media (max-width: 559px) { .nav a:not(.cta) { display: none; } }
 
 /* Home: bento tiles. Base styles show each tile's finished state; the loops only run when motion is allowed. */
@@ -177,8 +182,6 @@ a:hover { text-decoration-thickness: 2px; }
 .field input:focus, .field textarea:focus { outline: 3px solid rgba(35, 115, 79, 0.25); border-color: var(--brand); }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 .send { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
-.btn { font: inherit; font-size: 16px; font-weight: 600; padding: 13px 24px; border: 0; border-radius: 12px; background: var(--brand-deep); color: #fff; cursor: pointer; transition: background 0.2s, transform 0.2s; }
-.btn:hover { background: var(--brand); } .btn:active { transform: scale(0.98); } .btn[disabled] { opacity: 0.6; cursor: default; }
 .status { margin: 0; font-size: 15px; color: var(--ink-3); } .status.ok { color: var(--brand); font-weight: 600; } .status.err { color: #A94D43; }
 .note { margin: 0; font-size: 14px; line-height: 1.5; color: var(--ink-4); }
 @media (min-width: 600px) { .form .two { grid-template-columns: 1fr 1fr; } }
