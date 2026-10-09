@@ -18,15 +18,16 @@
 <link rel="preload" href="../assets/fonts/inter-600SemiBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../style.css">
 </head>
-<body>
+<body data-page="data-sources" class="doc-page">
 <a class="skip" href="#main">Skip to content</a>
 <div class="wrap">
   <header class="top">
-    <a class="brand" href="../"><img src="../assets/logo.svg" alt="" width="26" height="39">IPO Saathi</a>
+    <a class="brand" data-track="logo" href="../"><img src="../assets/logo.svg" alt="" width="26" height="39">IPO Saathi</a><nav class="nav" aria-label="Main"><a data-track="faq_header" href="../#faq">FAQ</a><a data-track="support_header" href="../support/">Support</a><a class="cta" data-track="download_header" href="../#download">Download the app</a></nav>
   </header>
 
   <main id="main" class="doc">
     <header>
+      <p class="eyebrow">Reference</p>
       <h1>Data sources</h1>
       <p class="meta">Last updated 9 October 2026.</p>
       <div class="summary">
@@ -82,14 +83,15 @@
 
   <footer class="foot">
     <ul>
-      <li><a href="../privacy/">Privacy</a></li>
-      <li><a href="../terms/">Terms</a></li>
-      <li><a href="../disclaimer/">Disclaimer</a></li>
-      <li><a href="../data-sources/">Data sources</a></li>
-      <li><a href="../support/">Support</a></li>
+      <li><a data-track="footer_privacy" href="../privacy/">Privacy</a></li>
+      <li><a data-track="footer_terms" href="../terms/">Terms</a></li>
+      <li><a data-track="footer_disclaimer" href="../disclaimer/">Disclaimer</a></li>
+      <li><a data-track="footer_data_sources" href="../data-sources/">Data sources</a></li>
+      <li><a data-track="footer_support" href="../support/">Support</a></li>
     </ul>
-    <p>For information only, not investment advice. Not affiliated with SEBI, NSE, BSE, any registrar or any company shown. Google Play and the Google Play logo are trademarks of Google LLC.</p>
+    <p>For information only, not investment advice. Not affiliated with SEBI, NSE, BSE, any registrar or any company shown.</p>
   </footer>
 </div>
+<script src="../assets/track.js" defer></script>
 </body>
 </html>

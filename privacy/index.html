@@ -18,15 +18,16 @@
 <link rel="preload" href="../assets/fonts/inter-600SemiBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../style.css">
 </head>
-<body>
+<body data-page="privacy" class="doc-page">
 <a class="skip" href="#main">Skip to content</a>
 <div class="wrap">
   <header class="top">
-    <a class="brand" href="../"><img src="../assets/logo.svg" alt="" width="26" height="39">IPO Saathi</a>
+    <a class="brand" data-track="logo" href="../"><img src="../assets/logo.svg" alt="" width="26" height="39">IPO Saathi</a><nav class="nav" aria-label="Main"><a data-track="faq_header" href="../#faq">FAQ</a><a data-track="support_header" href="../support/">Support</a><a class="cta" data-track="download_header" href="../#download">Download the app</a></nav>
   </header>
 
   <main id="main" class="doc">
     <header>
+      <p class="eyebrow">Legal</p>
       <h1>Privacy Policy</h1>
       <p class="meta">Last updated 9 October 2026. Applies to the IPO Saathi app for Android and to this website.</p>
       <div class="summary">
@@ -96,6 +97,16 @@
               <td>Our database. Messages travel through Expo's push service and Google's Firebase Cloud Messaging.</td>
             </tr>
             <tr>
+              <td><strong>Website visits and clicks.</strong> Which page you opened, the site you came from, whether you are on a phone or a computer, and which buttons you press (for example Download the app). A random code that the browser forgets when you close the tab. Not collected if your browser sends Do Not Track or Global Privacy Control.</td>
+              <td>To see how many people visit and press Download.</td>
+              <td>Mixpanel (US).</td>
+            </tr>
+            <tr>
+              <td><strong>Contact form.</strong> If you use the form on the Support page: your name, email address and message.</td>
+              <td>To read your message and reply.</td>
+              <td>Our database (Mumbai, India) and our email inbox (Gmail).</td>
+            </tr>
+            <tr>
               <td><strong>Firebase Analytics.</strong> Automatic app events such as first open, sessions, updates and uninstalls, with the install code as the user id. Advertising ID collection and ad personalisation are switched off.</td>
               <td>Reliable counts of installs, active use and uninstalls.</td>
               <td>Google (Firebase).</td>
@@ -118,6 +129,7 @@
         <li><strong>Google Firebase</strong>, app analytics and push delivery. <a href="https://firebase.google.com/support/privacy" rel="noopener">Policy</a></li>
         <li><strong>Microsoft Clarity</strong>, session recordings and tap maps. <a href="https://privacy.microsoft.com/privacystatement" rel="noopener">Policy</a></li>
         <li><strong>Expo</strong>, push notification delivery. <a href="https://expo.dev/privacy" rel="noopener">Policy</a></li>
+        <li><strong>Google (Gmail)</strong>, where our email inbox lives, so a contact form message reaches us there. <a href="https://policies.google.com/privacy" rel="noopener">Policy</a></li>
         <li><strong>Registrars</strong>, only when you tap Check allotment, as described above.</li>
       </ul>
       <p>We do not sell or rent data, we do not show ads, and we do not share data for advertising. We may disclose data if a law or a court order requires it.</p>
@@ -125,12 +137,13 @@
 
       <h2 id="not">What we do not collect</h2>
       <p>No name, email address or phone number. No location. No contacts, camera, microphone, photos or files. No advertising ID. The only permission the app asks for is to show notifications.</p>
-      <p>This website uses no cookies, no analytics and no third-party fonts or scripts.</p>
+      <p>This website sets no cookies and uses no third-party fonts or scripts. It counts visits and button clicks with Mixpanel, using a random code that is forgotten when you close the tab, and it sends the contact form on the Support page only when you press Send.</p>
 
       <h2 id="keep">How long we keep it</h2>
       <ul>
         <li><strong>On your phone:</strong> until you remove a PAN, delete all PANs or uninstall the app.</li>
         <li><strong>Usage events in our database:</strong> 180 days, then they are deleted automatically.</li>
+        <li><strong>Contact form messages:</strong> up to a year in our database, then deleted automatically. The copy in our inbox stays until we delete it.</li>
         <li><strong>Push tokens:</strong> until notifications stop working for that phone, or you ask us to delete it.</li>
         <li><strong>Mixpanel, Google and Microsoft:</strong> as set in each service's own retention settings.</li>
       </ul>
@@ -159,14 +172,15 @@
 
   <footer class="foot">
     <ul>
-      <li><a href="../privacy/">Privacy</a></li>
-      <li><a href="../terms/">Terms</a></li>
-      <li><a href="../disclaimer/">Disclaimer</a></li>
-      <li><a href="../data-sources/">Data sources</a></li>
-      <li><a href="../support/">Support</a></li>
+      <li><a data-track="footer_privacy" href="../privacy/">Privacy</a></li>
+      <li><a data-track="footer_terms" href="../terms/">Terms</a></li>
+      <li><a data-track="footer_disclaimer" href="../disclaimer/">Disclaimer</a></li>
+      <li><a data-track="footer_data_sources" href="../data-sources/">Data sources</a></li>
+      <li><a data-track="footer_support" href="../support/">Support</a></li>
     </ul>
-    <p>For information only, not investment advice. Not affiliated with SEBI, NSE, BSE, any registrar or any company shown. Google Play and the Google Play logo are trademarks of Google LLC.</p>
+    <p>For information only, not investment advice. Not affiliated with SEBI, NSE, BSE, any registrar or any company shown.</p>
   </footer>
 </div>
+<script src="../assets/track.js" defer></script>
 </body>
 </html>

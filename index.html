@@ -21,34 +21,107 @@
 <link rel="preload" href="assets/fonts/inter-600SemiBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
 </head>
-<body class="home">
+<body data-page="home" class="home">
 <a class="skip" href="#main">Skip to content</a>
-<div class="wrap page">
-  <header class="top">
-    <a class="brand" href="./"><img src="assets/logo.svg" alt="" width="26" height="39">IPO Saathi</a>
-  </header>
+<div class="wrap">
+  <header class="top"><a class="brand" data-track="logo" href="./"><img src="assets/logo.svg" alt="" width="26" height="39">IPO Saathi</a><nav class="nav" aria-label="Main"><a data-track="faq_header" href="#faq">FAQ</a><a data-track="support_header" href="support/">Support</a><a class="cta" data-track="download_header" href="#download">Download the app</a></nav></header>
 
-  <main id="main" class="hero">
-    <div class="hero-text">
-      <h1 class="reveal" style="--i:0">Every IPO, and your whole family's allotment, in one place.</h1>
-      <p class="lede reveal" style="--i:1">GMP, subscription and allotment for all your PANs. No ads. No sign-up.</p>
-      <img class="badge reveal" style="--i:2" src="assets/google-play-badge.svg" alt="Get it on Google Play (coming soon)" width="239" height="71">
-    </div>
-    <div class="stage reveal" style="--i:3">
-      <img src="assets/hero.svg" alt="" width="400" height="400">
-    </div>
+  <main id="main" class="grid">
+    <section id="download" class="t t-hero reveal" style="--i:0">
+      <div>
+        <h1>Every IPO, and your whole family's allotment, in one place.</h1>
+        <p>GMP, subscription and allotment for all your PANs.</p>
+      </div>
+      <img data-track="download_badge" src="assets/google-play-badge.svg" alt="Get it on Google Play (coming soon)" width="239" height="71">
+    </section>
+    <section class="t t-art reveal" style="--i:1"><img src="assets/hero.svg" alt="" width="322" height="326"></section>
+
+    <section class="t t-tabs reveal" style="--i:2">
+      <p class="k">Follow</p>
+      <h2>Every IPO, sorted</h2>
+      <p class="d">Live, Upcoming, Awaiting listing and Listed. Mainboard and SME.</p>
+      <div class="vis" aria-hidden="true">
+        <div class="seg"><span class="ind"></span><b>Live</b><b>Upcoming</b><b>Awaiting</b><b>Listed</b></div>
+        <div class="skel"><div><i></i><span><u></u><u></u></span></div><div><i></i><span><u></u><u></u></span></div></div>
+      </div>
+    </section>
+
+    <section class="t t-gmp reveal" style="--i:3">
+      <p class="k">GMP</p>
+      <h2>See how the premium moved</h2>
+      <p class="d">The grey market premium and its history, shown as a trend. It is unofficial, so treat it as a signal, not a promise.</p>
+      <div class="vis" aria-hidden="true">
+        <svg class="spark" viewBox="0 0 320 110" role="presentation">
+          <defs><linearGradient id="gmpFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#23734F" stop-opacity=".22"/><stop offset="1" stop-color="#23734F" stop-opacity="0"/></linearGradient></defs>
+          <line class="grid-l" x1="0" x2="320" y1="30" y2="30"/><line class="grid-l" x1="0" x2="320" y1="62" y2="62"/><line class="grid-l" x1="0" x2="320" y1="94" y2="94"/>
+          <path class="ar" d="M4 86 C40 82 56 70 90 72 S140 50 172 54 S226 34 256 38 S300 14 316 12 L316 110 L4 110 Z"/>
+          <path class="ln" pathLength="1" d="M4 86 C40 82 56 70 90 72 S140 50 172 54 S226 34 256 38 S300 14 316 12"/>
+          <circle class="ring" cx="316" cy="12" r="5"/><circle class="dot" cx="316" cy="12" r="5"/>
+        </svg>
+      </div>
+    </section>
+
+
+
+
+    <section class="t t-family reveal" style="--i:7">
+      <p class="k">Allotment</p>
+      <h2>Check everyone together</h2>
+      <p class="d">Save each PAN once with a nickname. When results are out, check the whole family in one go.</p>
+      <div class="vis fam" aria-hidden="true">
+        <div class="row" style="--n:0"><div class="av">M</div><div class="nm">Mummy<small>ABCPM&bull;&bull;&bull;&bull;A</small></div><div class="chips"><span class="chip wait">Checking</span><span class="chip yes">Allotted</span></div></div>
+        <div class="row" style="--n:1"><div class="av">P</div><div class="nm">Papa<small>ABCPP&bull;&bull;&bull;&bull;B</small></div><div class="chips"><span class="chip wait">Checking</span><span class="chip no">Not allotted</span></div></div>
+        <div class="row" style="--n:2"><div class="av">B</div><div class="nm">Bhai<small>ABCPB&bull;&bull;&bull;&bull;D</small></div><div class="chips"><span class="chip wait">Checking</span><span class="chip yes">Allotted</span></div></div>
+      </div>
+    </section>
+
+    <section class="t t-remind reveal" style="--i:8">
+      <p class="k">Reminders</p>
+      <h2>A nudge on the right day</h2>
+      <p class="d">The evening before an IPO opens, on its last day and on listing day. Each one can be switched off.</p>
+      <div class="vis notifs" aria-hidden="true">
+        <div class="n" style="--n:0"><span class="ic"><img src="assets/logo-white.svg" alt="" width="14" height="21"></span><span><b>Opens tomorrow</b><small>IPO Saathi</small></span><time>now</time></div>
+        <div class="n" style="--n:1"><span class="ic"><img src="assets/logo-white.svg" alt="" width="14" height="21"></span><span><b>Closes today</b><small>IPO Saathi</small></span><time>now</time></div>
+        <div class="n" style="--n:2"><span class="ic"><img src="assets/logo-white.svg" alt="" width="14" height="21"></span><span><b>Lists today</b><small>IPO Saathi</small></span><time>now</time></div>
+      </div>
+    </section>
+
+    <section class="t t-private reveal" style="--i:9">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path class="draw" pathLength="1" d="m9 12 2 2 4-4"/></svg></div>
+      <p>Your PAN stays<br>on your phone.</p>
+    </section>
+
+    <section class="t t-free reveal" style="--i:10">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path class="draw" pathLength="1" d="m4.9 4.9 14.2 14.2"/></svg></div>
+      <p>No ads.<br>No sign-up.</p>
+    </section>
   </main>
+
+  <section id="faq" class="faq">
+    <h2>Common questions</h2>
+      <details name="faq"><summary>Is IPO Saathi free?</summary><p>Yes. There are no ads and no sign-up, and there is nothing to buy.</p></details>
+      <details name="faq"><summary>Where is my PAN stored?</summary><p>Only on your phone, in its secure storage. It goes to the registrar's own lookup when you tap Check, and nowhere else. It never reaches our servers. See the <a href="privacy/">Privacy Policy</a>.</p></details>
+      <details name="faq"><summary>How do I add a PAN?</summary><p>Open the Allotment tab and tap the plus button. Give each PAN a nickname, such as Mummy or Papa, so you can tell them apart.</p></details>
+      <details name="faq"><summary>How do I remove a PAN?</summary><p>In the Allotment tab, tap the remove icon next to the PAN and confirm. To remove all of them at once, go to Profile and choose Delete all saved PANs. Uninstalling the app removes everything stored on the phone.</p></details>
+      <details name="faq"><summary>Which registrars does it check?</summary><p>KFin Technologies, MUFG Intime (Link Intime), Bigshare Services and Maashitla Securities are checked for you. For any other registrar, you can set the status yourself.</p></details>
+      <details name="faq"><summary>Why does it say N/A?</summary><p>The source has not published that figure yet, or we could not match it with confidence. For a new IPO this is normal in the first hours. See <a href="data-sources/">Data sources</a>.</p></details>
+      <details name="faq"><summary>What is GMP?</summary><p>The grey market premium is an unofficial indication of what traders in the grey market are paying above an IPO's issue price. It is not issued by any exchange and can differ from the real listing price. See the <a href="disclaimer/">Disclaimer</a>.</p></details>
+      <details name="faq"><summary>How do I switch reminders off?</summary><p>Go to Profile, then Notifications, and turn each type off. You can also turn notifications off for IPO Saathi in Android's settings.</p></details>
+      <details name="faq"><summary>Does IPO Saathi take my IPO application or money?</summary><p>No. It only shows information and checks allotment. You apply through your own broker or bank.</p></details>
+      <details name="faq"><summary>How do I get my usage data deleted?</summary><p>Go to Profile, then Feedback, write that you want your usage data deleted and send. The message carries your support code, which is how we find your data. We reply within 30 days. More in the <a href="privacy/#rights">Privacy Policy</a>.</p></details>
+  </section>
 
   <footer class="foot">
     <ul>
-      <li><a href="privacy/">Privacy</a></li>
-      <li><a href="terms/">Terms</a></li>
-      <li><a href="disclaimer/">Disclaimer</a></li>
-      <li><a href="data-sources/">Data sources</a></li>
-      <li><a href="support/">Support</a></li>
+      <li><a data-track="footer_privacy" href="privacy/">Privacy</a></li>
+      <li><a data-track="footer_terms" href="terms/">Terms</a></li>
+      <li><a data-track="footer_disclaimer" href="disclaimer/">Disclaimer</a></li>
+      <li><a data-track="footer_data_sources" href="data-sources/">Data sources</a></li>
+      <li><a data-track="footer_support" href="support/">Support</a></li>
     </ul>
-    <p>For information only, not investment advice. Not affiliated with SEBI, NSE, BSE, any registrar or any company shown. Google Play and the Google Play logo are trademarks of Google LLC.</p>
+    <p>For information only, not investment advice. Not affiliated with SEBI, NSE, BSE, any registrar or any company shown.</p>
   </footer>
 </div>
+<script src="assets/track.js" defer></script>
 </body>
 </html>
