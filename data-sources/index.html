@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data sources · IPO Saathi</title>
+<meta name="description" content="Where IPO Saathi gets its IPO, subscription, GMP, price and allotment information, and how fresh it is.">
+<link rel="canonical" href="https://iposaathi.com/data-sources/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="IPO Saathi">
+<meta property="og:title" content="Data sources · IPO Saathi">
+<meta property="og:url" content="https://iposaathi.com/data-sources/">
+<meta property="og:image" content="https://iposaathi.com/assets/og.png">
+<meta name="theme-color" content="#F8FAF9">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preload" href="../assets/fonts/inter-400Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/inter-600SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="../"><img src="../assets/logo.svg" alt="" width="26" height="39">IPO Saathi</a>
+    <nav class="nav" aria-label="Main">
+      <a href="../privacy/">Privacy</a>
+      <a href="../terms/">Terms</a>
+      <a href="../support/">Support</a>
+    </nav>
+  </header>
+
+  <main id="main" class="doc">
+    <header>
+      <h1>Data sources</h1>
+      <p class="meta">Last updated 9 October 2026.</p>
+      <div class="summary">
+        <h2>In short</h2>
+        <p>IPO details come from the exchanges, SEBI filings and company offer documents. GMP is an unofficial figure from public grey-market trackers. Allotment results come straight from the registrar to your phone.</p>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <ol>
+        <li><a href="#table">Where each number comes from</a></li>
+        <li><a href="#fresh">How fresh it is</a></li>
+        <li><a href="#na">What N/A means</a></li>
+        <li><a href="#wrong">Spotted a mistake?</a></li>
+      </ol>
+    </nav>
+
+    <div class="prose">
+
+      <h2 id="table">Where each number comes from</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>In the app</th><th>Source</th></tr></thead>
+          <tbody>
+            <tr><td>Company, board (Mainboard or SME), open and close dates, price band, lot size, issue size</td><td>The public IPO pages and data feeds of NSE and BSE (including BSE SME), and SEBI's list of filed offer documents</td></tr>
+            <tr><td>Subscription (overall and by category)</td><td>The exchanges' own bidding data while an IPO is open. Where an exchange publishes no category figures, the app shows what is available</td></tr>
+            <tr><td>GMP and how it moved</td><td>Public grey-market trackers. Unofficial, and not issued by any exchange</td></tr>
+            <tr><td>Listing price, listing gain, current gain</td><td>Exchange price data. The listing price is the opening price on the listing day, and gain is measured against the issue price</td></tr>
+            <tr><td>Allotment, refund and listing dates</td><td>Confirmed dates from the exchanges when available. Until then they are worked out from the close date using SEBI's standard timeline and are labelled as expected</td></tr>
+            <tr><td>Offer document (prospectus)</td><td>A link to the filing on SEBI's or the exchange's website</td></tr>
+            <tr><td>Company logos</td><td>Taken from the cover of the filed offer document. They belong to the companies</td></tr>
+            <tr><td>Allotment status of your PANs</td><td>The registrar of that IPO: KFin Technologies, MUFG Intime (Link Intime), Bigshare Services or Maashitla Securities. Your phone asks the registrar directly. For other registrars you can mark the status yourself</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="fresh">How fresh it is</h2>
+      <ul>
+        <li>IPO details and subscription are refreshed automatically through the day, and more often while an IPO is open.</li>
+        <li>GMP is refreshed about once an hour and a new reading is kept only when the value changes.</li>
+        <li>Share prices of listed IPOs are updated during market hours. Some SME prices run about 15 minutes behind.</li>
+        <li>Allotment results are fetched at the moment you tap Check.</li>
+      </ul>
+
+      <h2 id="na">What N/A means</h2>
+      <p>The source has not published that number, or we could not match it with confidence. It is better to show N/A than to guess. A GMP of ₹0 is different: it is a real reading that the grey market priced the IPO at nil.</p>
+
+      <h2 id="wrong">Spotted a mistake?</h2>
+      <p>Write to <a class="mail" href="mailto:dipanshudaga24@gmail.com?subject=IPO%20Saathi">dipanshudaga24@gmail.com</a> with the company name and what looks wrong. Please check the official offer document or the exchange page first, since they are the final word.</p>
+    </div>
+  </main>
+
+  <footer class="foot">
+    <ul>
+      <li><a href="../privacy/">Privacy</a></li>
+      <li><a href="../terms/">Terms</a></li>
+      <li><a href="../disclaimer/">Disclaimer</a></li>
+      <li><a href="../data-sources/">Data sources</a></li>
+      <li><a href="../support/">Support</a></li>
+    </ul>
+    <p>IPO Saathi is for information only and is not investment advice. It is not affiliated with SEBI, NSE, BSE, any registrar or any company shown. Names and logos belong to their owners.</p>
+    <p>Made in India. Google Play is a trademark of Google LLC.</p>
+  </footer>
+</div>
+</body>
+</html>
