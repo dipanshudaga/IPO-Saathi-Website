@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>IPO Saathi</title>
-<meta name="description" content="Follow Live, Upcoming and Listed IPOs, see GMP and subscription, and check allotment for all your saved PANs in one go. No ads. No sign-up.">
+<meta name="description" content="IPO GMP, subscription and allotment for all your PANs. No ads. No sign-up.">
 <link rel="canonical" href="https://iposaathi.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="IPO Saathi">
@@ -20,70 +20,23 @@
 <link rel="preload" href="assets/fonts/inter-600SemiBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="home">
 <a class="skip" href="#main">Skip to content</a>
-<div class="wrap">
+<div class="wrap page">
   <header class="top">
     <a class="brand" href="./"><img src="assets/logo.svg" alt="" width="26" height="39">IPO Saathi</a>
-    <nav class="nav" aria-label="Main">
-      <a href="privacy/">Privacy</a>
-      <a href="terms/">Terms</a>
-      <a href="support/">Support</a>
-    </nav>
   </header>
 
-  <main id="main">
-    <section class="hero">
-      <div>
-        <h1>Every IPO, and your whole family's allotment, in one place.</h1>
-        <p class="lede">GMP, subscription and allotment for all your PANs. Plain words, made for first-time applicants as much as regular ones.</p>
-        <div class="badges">
-          <span class="play" role="img" aria-label="Coming soon on Google Play">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5z"/></svg>
-            <span>Coming soon on<b>Google Play</b></span>
-          </span>
-          <span class="free">Free. No ads. No sign-up.</span>
-        </div>
-      </div>
-      <div class="hero-art">
-        <img src="assets/hero.svg" alt="" width="400" height="400">
-      </div>
-    </section>
+  <main id="main" class="hero">
+    <div class="hero-text">
+      <h1>Every IPO, and your whole family's allotment, in one place.</h1>
+      <p class="lede">GMP, subscription and allotment for all your PANs. No ads. No sign-up.</p>
+      <img class="badge" src="assets/google-play-badge.png" alt="Get it on Google Play (coming soon)" width="576" height="170">
+    </div>
+    <div class="hero-art">
+      <img src="assets/hero.svg" alt="" width="400" height="400">
+    </div>
   </main>
-</div>
-
-<div class="band">
-  <div class="wrap">
-    <ul class="points">
-      <li>
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
-        <h2>Follow every IPO</h2>
-        <p>Live, Upcoming, Awaiting Listing and Listed, Mainboard and SME, with the GMP and the subscription status.</p>
-      </li>
-      <li>
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-        <h2>Check the whole household</h2>
-        <p>Save your PANs once, each with a nickname. When results are out, check them all together.</p>
-      </li>
-      <li>
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
-        <h2>Understand it first</h2>
-        <p>Price band, lot size, key dates and the amount for one lot, in plain words, with the offer document one tap away.</p>
-      </li>
-      <li>
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
-        <h2>Gentle reminders</h2>
-        <p>Follow an IPO to be reminded the evening before it opens, on its last day and on listing day. Each one can be switched off.</p>
-      </li>
-    </ul>
-  </div>
-</div>
-
-<div class="wrap">
-  <section class="privacy-line">
-    <h2>Your PAN stays on your phone.</h2>
-    <p>It is saved in your phone's secure storage and goes only to the registrar's own lookup when you tap Check. It never reaches our servers. <a href="privacy/">Read the privacy policy</a>.</p>
-  </section>
 
   <footer class="foot">
     <ul>
@@ -93,8 +46,7 @@
       <li><a href="data-sources/">Data sources</a></li>
       <li><a href="support/">Support</a></li>
     </ul>
-    <p>IPO Saathi is for information only and is not investment advice. It is not affiliated with SEBI, NSE, BSE, any registrar or any company shown. Names and logos belong to their owners.</p>
-    <p>Made in India. Google Play is a trademark of Google LLC.</p>
+    <p>For information only, not investment advice. Not affiliated with SEBI, NSE, BSE, any registrar or any company shown. Google Play and the Google Play logo are trademarks of Google LLC.</p>
   </footer>
 </div>
 </body>
