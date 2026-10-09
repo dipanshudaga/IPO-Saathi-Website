@@ -181,7 +181,11 @@ a:hover { text-decoration-thickness: 2px; }
 .field input::placeholder, .field textarea::placeholder { color: var(--ink-4); }
 .field input:focus, .field textarea:focus { outline: 3px solid rgba(35, 115, 79, 0.25); border-color: var(--brand); }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
-.send { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
+.send { display: grid; gap: 12px; }
+.send .btn { width: 100%; }
+.after { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; }
+.after:empty, .after .status:empty { display: none; }
+.after .more { display: flex; gap: 16px; }
 .status { margin: 0; font-size: 15px; color: var(--ink-3); } .status.ok { color: var(--brand); font-weight: 600; } .status.err { color: #A94D43; }
 .note { margin: 0; font-size: 14px; line-height: 1.5; color: var(--ink-4); }
 .field[hidden], .send [hidden] { display: none; }
