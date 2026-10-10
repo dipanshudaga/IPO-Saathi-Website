@@ -57,8 +57,8 @@
   window.track = send;
 
   // Microsoft Clarity: heatmaps and recordings. Only on the live site, not on localhost. Consent is declared
-  // denied, so Clarity sets no cookies and treats each page view on its own (its "no-consent mode"); form
-  // fields are never recorded. Same Do Not Track / Global Privacy Control rule as above (we returned early).
+  // denied, so Clarity sets no cookies (its "no-consent mode"); form fields are never recorded.
+  // Same Do Not Track / Global Privacy Control rule as above (we returned early).
   if (env === 'production') {
     (function (c, l, a, r, i, t, y) {
       c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
@@ -66,6 +66,9 @@
       y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
     })(window, document, 'clarity', 'script', 'yuzbln0r27');
     window.clarity('consentv2', { ad_Storage: 'denied', analytics_Storage: 'denied' });
+    // The visit's random code (forgotten when the tab closes) as the custom user id, so the recordings of one visit
+    // can be filtered together in Clarity. Nothing that outlives the tab, so a returning visitor is a new one.
+    window.clarity('identify', visitor, '', page);
   }
 
   send('web_page_viewed', { referrer_host: ref, utm_source: q.get('utm_source') || '', utm_medium: q.get('utm_medium') || '', utm_campaign: q.get('utm_campaign') || '' });
