@@ -1,3 +1,19 @@
+// Open at the section the address names (for example #faq), also after a reload, when the browser would otherwise
+// restore the old scroll position or jump before the page has finished laying out.
+(function () {
+  if (location.hash.length < 2) return;
+  try { history.scrollRestoration = 'manual'; } catch (e) {}
+  function go() {
+    var el = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (el) el.scrollIntoView({ block: 'start', behavior: 'instant' });
+  }
+  window.addEventListener('load', function () {
+    go();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(go);
+    setTimeout(go, 400);
+  });
+})();
+
 // Offline page: when there is no connection, sw.js shows a small puzzle instead of the browser's error (see offline.html).
 (function () {
   if (!('serviceWorker' in navigator) || !document.currentScript) return;

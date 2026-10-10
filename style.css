@@ -76,10 +76,9 @@ a:hover { text-decoration-thickness: 2px; }
 .t .d { margin: 6px 0 0; font-size: 15px; line-height: 1.5; color: var(--ink-3); max-width: 30em; }
 .vis { margin-top: 22px; }
 
-.t-hero { grid-column: span 7; grid-row: span 2; display: flex; flex-direction: column; justify-content: space-between; gap: 32px; min-height: 420px; }
-.t-hero h1 { margin: 0; font-size: clamp(28px, 3.7vw, 46px); line-height: 1.02; letter-spacing: -0.04em; font-weight: 600; color: var(--brand-deep); text-wrap: balance; }
-.t-hero p { margin: 14px 0 0; font-size: 17px; line-height: 1.5; color: var(--ink-3); max-width: 24em; }
-.t-hero p.usp { margin-top: 10px; font-weight: 600; color: var(--brand-deep); }
+.t-hero { grid-column: span 8; grid-row: span 2; overflow: visible; z-index: 2; display: flex; flex-direction: column; justify-content: space-between; gap: 28px; min-height: 360px; }
+.t-hero h1 { margin: 0; font-size: clamp(34px, 5vw, 64px); line-height: 1.02; letter-spacing: -0.04em; font-weight: 600; color: var(--brand-deep); text-wrap: balance; }
+.t-hero p { margin: 16px 0 0; font-size: 20px; line-height: 1.5; color: var(--ink-3); max-width: 24em; }
 .t-hero > img { height: 56px; width: auto; align-self: flex-start; }
 .t-hero { touch-action: pan-y; }
 /* the charm hangs from the tile's top edge; the headline wraps around the space it swings in */
@@ -87,8 +86,8 @@ a:hover { text-decoration-thickness: 2px; }
 .t-hero .thread { position: absolute; top: 0; width: 2px; border-radius: 1px; background: var(--ink-3); transform-origin: 50% 0; }
 .t-hero .art { position: absolute; top: -8px; width: 160px; height: 134px; transform-origin: 80px 8px; will-change: transform; }
 .t-hero .art img { display: block; width: 160px; height: 134px; }
-.t-hero .copy::before { content: ''; float: right; width: 176px; height: 168px; }
-.t-art { grid-column: span 5; grid-row: span 2; display: grid; place-items: center; padding: 6%; border-color: var(--wash-strong); background: radial-gradient(110% 80% at 50% 0%, #fff, var(--wash) 55%, var(--wash-strong)); }
+.t-hero .copy::before { content: ''; float: right; width: var(--charm-w, 176px); height: 168px; }
+.t-art { grid-column: span 4; grid-row: span 2; display: grid; place-items: center; padding: 6%; border-color: var(--wash-strong); background: radial-gradient(110% 80% at 50% 0%, #fff, var(--wash) 55%, var(--wash-strong)); }
 .t-art img { width: 100%; max-height: 100%; height: auto; }
 
 .t-tabs { grid-column: span 5; } .t-gmp { grid-column: span 7; }
@@ -173,6 +172,11 @@ a:hover { text-decoration-thickness: 2px; }
   .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .t-hero, .t-art, .t-tabs, .t-gmp, .t-family, .t-remind, .t-private, .t-free { grid-column: 1 / -1; grid-row: auto; }
   .t-hero { min-height: 0; } .t-art { padding: 8%; }
+  /* On a phone the hero tile is centred: the charm hangs from the middle of the top edge, then the text and the badge. */
+  .t-hero { align-items: center; text-align: center; }
+  .t-hero p { margin-left: auto; margin-right: auto; }
+  .t-hero > img { align-self: center; }
+  .t-hero .copy::before { float: none; display: block; width: auto; height: 170px; }
 }
 
 /* FAQ on the home page */
@@ -208,6 +212,8 @@ a:hover { text-decoration-thickness: 2px; }
 /* Footer */
 .foot { border-top: 1px solid var(--line); margin-top: 24px; padding: 22px 0 36px; color: var(--ink-4); font-size: 13px; line-height: 1.6; text-align: center; }
 .foot ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; list-style: none; padding: 0; margin: 0 0 14px; font-size: 15px; font-weight: 500; }
+.m-only { display: none; }
+@media (max-width: 559px) { .m-only { display: list-item; } }
 .foot ul a { color: var(--ink-3); text-decoration: none; }
 .foot ul a:hover { color: var(--brand); text-decoration: underline; }
 .foot p { margin: 0 auto; max-width: 46em; }

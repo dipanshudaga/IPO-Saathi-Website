@@ -5,7 +5,7 @@
   var host = document.querySelector('[data-charm]');
   if (!host) return;
   var art = host.querySelector('.art'), thread = host.querySelector('.thread');
-  var RIGHT = 96, DROP = 52; // distance of the string from the tile's right edge, and its length
+  var RIGHT = 96, DROP = 52; // distance of the string from the tile's right edge (set by layout()), and its length
   var C = { stringLen: DROP, linkLen: 91, m1: 1, m2: 1.4, gravity: 3400, kString: 700, cString: 7, kLink: 2200, cLink: 16, airDrag: 1.6, kGrab: 1400, cGrab: 70, reach1: DROP + 120, reach2: DROP + 235 };
   var REST_Y1 = C.stringLen + ((C.m1 + C.m2) * C.gravity) / C.kString;
   var REST_LINK = C.linkLen + (C.m2 * C.gravity) / C.kLink;
@@ -14,7 +14,7 @@
 
   function rest() { return { x1: 0, y1: REST_Y1, x2: 0, y2: REST_Y2, vx1: 0, vy1: 0, vx2: 0, vy2: 0 }; }
 
-  function step(s, dt, grab, tx, ty, limitX, wind) {
+  function step(s, dt, grab, tx, ty, limL, limR, wind) {
     var steps = Math.max(1, Math.ceil(dt / SUBSTEP)), h = dt / steps;
     for (var i = 0; i < steps; i++) {
       var l1 = Math.hypot(s.x1, s.y1) || 1e-6, n1x = s.x1 / l1, n1y = s.y1 / l1;
@@ -36,8 +36,8 @@
       s.x1 += s.vx1 * h; s.y1 += s.vy1 * h; s.x2 += s.vx2 * h; s.y2 += s.vy2 * h;
       var r1 = Math.hypot(s.x1, s.y1); if (r1 > C.reach1) { var k1 = C.reach1 / r1; s.x1 *= k1; s.y1 *= k1; }
       var r2 = Math.hypot(s.x2, s.y2); if (r2 > C.reach2) { var k2 = C.reach2 / r2; s.x2 *= k2; s.y2 *= k2; }
-      if (Math.abs(s.x1) > limitX) { s.x1 = Math.sign(s.x1) * limitX; s.vx1 = 0; }
-      if (Math.abs(s.x2) > limitX) { s.x2 = Math.sign(s.x2) * limitX; s.vx2 = 0; }
+      if (s.x1 < -limL) { s.x1 = -limL; s.vx1 = 0; } else if (s.x1 > limR) { s.x1 = limR; s.vx1 = 0; }
+      if (s.x2 < -limL) { s.x2 = -limL; s.vx2 = 0; } else if (s.x2 > limR) { s.x2 = limR; s.vx2 = 0; }
       if (s.y1 < 0) { s.y1 = 0; s.vy1 = Math.max(0, s.vy1); }
     }
   }
@@ -57,7 +57,13 @@
   s.vx1 += 120; s.vx2 += 260; // a small nudge on arrival: it says "touch me" without a label
   if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { visible = e[0].isIntersecting; }).observe(host);
 
-  function pivot() { return host.clientWidth - RIGHT; }
+  // The string hangs a little in from the tile's right edge; the headline wraps around the space it swings in.
+  // Wide screens: the string hangs near the tile's right edge and the headline wraps around it. Phones (the stacked
+  // layout): the tile is centred, so the string hangs from the middle.
+  var narrow = window.matchMedia('(max-width: 899px)');
+  function layout() { RIGHT = host.clientWidth > 520 ? 120 : 96; host.style.setProperty('--charm-w', RIGHT + 84 + 'px'); }
+  layout(); window.addEventListener('resize', layout);
+  function pivot() { return narrow.matches ? host.clientWidth / 2 : host.clientWidth - RIGHT; }
   function local(e) { var r = host.getBoundingClientRect(); return { x: e.clientX - r.left - host.clientLeft - pivot(), y: e.clientY - r.top - host.clientTop }; }
   host.addEventListener('pointerdown', function (e) {
     var p = local(e), n = pick(s, p.x, p.y);
@@ -65,20 +71,26 @@
     grab = n; tx = p.x; ty = p.y; awake = true; host.setPointerCapture(e.pointerId); host.style.cursor = 'grabbing'; e.preventDefault();
   });
   host.addEventListener('pointermove', function (e) {
+    // A mouse button let go outside the window sends no pointerup: no button down means the charm is no longer held.
+    if (grab && e.pointerType === 'mouse' && e.buttons === 0) release();
     var p = local(e);
     if (grab) { tx = p.x; ty = p.y; } else host.style.cursor = pick(s, p.x, p.y) ? 'grab' : '';
   });
   function release() { grab = 0; host.style.cursor = ''; }
   host.addEventListener('pointerup', release);
   host.addEventListener('pointercancel', release);
+  host.addEventListener('lostpointercapture', release);
+  window.addEventListener('blur', release);
+  document.addEventListener('visibilitychange', release);
 
   function frame(now) {
     if (!t0) { t0 = now; last = now; }
     var dt = Math.min((now - last) / 1000, 1 / 30), seconds = (now - t0) / 1000; last = now;
     var ambient = !reduce, idle = ambient && grab === 0;
     if (visible && (grab !== 0 || awake || ambient)) {
-      var px = pivot(), limitX = Math.max(60, Math.min(px, host.clientWidth - px) - 26);
-      step(s, dt, grab, tx, ty, limitX, idle ? ambientWind(seconds) : 0);
+      // free swing: only the edges of the window stop it (the tile does not clip it)
+      var px = pivot(), r = host.getBoundingClientRect(), x0 = r.left + host.clientLeft + px, vw = document.documentElement.clientWidth;
+      step(s, dt, grab, tx, ty, Math.max(30, x0 - 88), Math.max(30, vw - x0 - 88), idle ? ambientWind(seconds) : 0);
       if (idle && seconds > nextGust) {
         if (nextGust > 0) { var dir = Math.random() < 0.5 ? -1 : 1; s.vx2 += dir * 170; s.vx1 += dir * 70; }
         nextGust = seconds + 6 + Math.random() * 4;
